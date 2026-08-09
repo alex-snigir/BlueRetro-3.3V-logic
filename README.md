@@ -9,15 +9,15 @@ BlueRetro emulates the standard NES/Dendy shift-register protocol (CLOCK/LATCH/D
 - **Host:** Murmulator (RP2040, perfboard build) — VGA, PS/2 keyboard, audio, joystick ports.
 - **Adapter:** DIY BlueRetro on ESP32 D1 mini (MH-ET LIVE, CH9102), HW1 firmware spec, custom KiCad schematic with global + per-port status LEDs, input power protection, and a BOOT/IO0 button added off-board.
 - **Cabling:** JST XH 4-pin (BlueRetro) → DE-9 (Murmulator), pinout and wiring detailed in the project summary.
+- **Schematics:** KiCad project for the BlueRetro adapter board — [`schematics/BlueRetro3V3/`](schematics/BlueRetro3V3/) (plotted PDF: [`BlueRetro3V3.pdf`](schematics/BlueRetro3V3/BlueRetro3V3.pdf)).
 
 ## Docs
 
 | File | Description |
 |---|---|
-| [`blueretro-murmulator-project-summary.md`](blueretro-murmulator-project-summary.md) / [`_EN`](blueretro-murmulator-project-summary_EN.md) | Full technical writeup: board selection, pinout, power, LED indication, firmware, oscilloscope verification |
-| [`blueretro-murmulator-user-guide.md`](blueretro-murmulator-user-guide.md) / [`_EN`](blueretro-murmulator-user-guide_EN.md) | Day-to-day usage: pairing and unpairing Bluetooth gamepads |
-| [`murmulator-vga-project-summary.md`](murmulator-vga-project-summary.md) | Base Murmulator perfboard build (host platform) |
-| [`BlueRetro3V3.net`](BlueRetro3V3.net) | KiCad netlist for the BlueRetro adapter board |
+| [`doc/blueretro-murmulator-project-summary.md`](doc/blueretro-murmulator-project-summary.md) / [`_EN`](doc/blueretro-murmulator-project-summary_EN.md) | Full technical writeup: board selection, pinout, power, LED indication, firmware, oscilloscope verification |
+| [`doc/blueretro-murmulator-user-guide.md`](doc/blueretro-murmulator-user-guide.md) / [`_EN`](doc/blueretro-murmulator-user-guide_EN.md) | Day-to-day usage: pairing and unpairing Bluetooth gamepads |
+| [`murmulator-vga-project-summary.md`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/main/doc/murmulator-vga-project-summary.md) / [`_EN`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/main/doc/murmulator-vga-project-summary_EN.md) | Base Murmulator perfboard build (host platform) — separate repo |
 
 ## Status
 

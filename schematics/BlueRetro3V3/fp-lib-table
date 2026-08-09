@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "_my_Transistors") (type "KiCad") (uri "C:/Data/Design/Electronics/KiCad/10.0/footprints/_my_Transistors.pretty") (options "") (descr ""))
+)

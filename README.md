@@ -19,7 +19,7 @@ BlueRetro эмулирует на выходе стандартный прото
 |---|---|
 | [`doc/blueretro-murmulator-project-summary.md`](doc/blueretro-murmulator-project-summary.md) / [`_EN`](doc/blueretro-murmulator-project-summary_EN.md) | Полное техническое описание: выбор платы, распиновка, питание, LED-индикация, прошивка, проверка осциллографом |
 | [`doc/blueretro-murmulator-user-guide.md`](doc/blueretro-murmulator-user-guide.md) / [`_EN`](doc/blueretro-murmulator-user-guide_EN.md) | Повседневное использование: пейринг и отключение Bluetooth-геймпадов |
-| [`murmulator-vga-project-summary.md`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/main/doc/murmulator-vga-project-summary.md) / [`_EN`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/main/doc/murmulator-vga-project-summary_EN.md) | Базовая сборка Мурмулятора на перфборде (хост-платформа) — отдельный репозиторий |
+| [`murmulator-vga-project-summary.md`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary.md) / [`_EN`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary_EN.md) | Базовая сборка Мурмулятора на перфборде (хост-платформа) — отдельный репозиторий |
 
 ## Статус
 

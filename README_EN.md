@@ -6,6 +6,8 @@ Connect Bluetooth gamepads (Xbox One, PS/Switch, and other HID controllers) to a
 
 BlueRetro emulates the standard NES/Dendy shift-register protocol (CLOCK/LATCH/DATA) on its output and plugs directly into the Murmulator's DE-9 joystick ports — no wired NES controllers involved.
 
+![BlueRetro PCB](doc/BlueRetro_PCB_front.jpg)
+
 ## Hardware
 
 - **Host:** Murmulator (RP2040, perfboard build) — VGA, PS/2 keyboard, audio, joystick ports.

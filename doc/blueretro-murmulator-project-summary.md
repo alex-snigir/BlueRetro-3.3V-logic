@@ -235,21 +235,33 @@ Vf измерены мультиметром-вольтметром на LED ч�
 **Команда прошивки (Windows, через PlatformIO Core):**
 
 ```
-pio pkg exec -- esptool.py -p COM13 -b 460800 --before default_reset --after hard_reset --chip esp32 write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 bootloader.bin 0x8000 partition-table.bin 0xD000 ota_data_initial.bin 0x10000 BlueRetro_hw1_nes.bin
+pio pkg exec -- esptool.py -p COM6 -b 460800 --before default_reset --after hard_reset --chip esp32 write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 bootloader.bin 0x8000 partition-table.bin 0xD000 ota_data_initial.bin 0x10000 BlueRetro_hw1_nes.bin
 ```
 
-Порт `COM13` — под конкретный экземпляр платы, уточнять в Диспетчере устройств Windows при каждой прошивке.
+Порт `COM6` — под конкретный экземпляр платы, уточнять в Диспетчере устройств Windows при каждой прошивке.
 
 **Примечание:** при прямом вызове `python esptool.py ...` (не через `pio pkg exec`) может не хватать зависимостей esptool, так как системный Python не видит окружение, куда PlatformIO их устанавливал — команда через `pio pkg exec --` обходит эту проблему, используя корректное окружение автоматически.
 
 **Full flash erase:**
 ```
-pio pkg exec -- esptool.py -p COM13 --chip esp32 erase_flash
+pio pkg exec -- esptool.py -p COM6 --chip esp32 erase_flash
 ```
 
 **Serial Monitor Debug:**
 ```
-pio device monitor -p COM13 -b 115200
+pio device monitor -p COM6 -b 921600
+```
+
+**Параметры SecureCRT Serial Monitor:**
+```
+Connection:
+  Serial:
+    Port: COM6
+    Baud rate: 921600
+Terminal:
+  Emulation:
+    Modes:
+      [v] New line mode
 ```
 
 ### Первичная настройка после прошивки (BlueRetro Web Configurator)

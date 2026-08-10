@@ -11,6 +11,9 @@ _autosave-*
 *-save.kicad_pcb
 *-save.pro
 
+# KiCad history
+.history/
+
 # Lock files
 *.lck
 

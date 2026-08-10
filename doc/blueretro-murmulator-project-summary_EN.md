@@ -235,21 +235,33 @@ The verification confirms both the electrical integrity of the CLOCK/LATCH signa
 **Flashing command (Windows, via PlatformIO Core):**
 
 ```
-pio pkg exec -- esptool.py -p COM13 -b 460800 --before default_reset --after hard_reset --chip esp32 write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 bootloader.bin 0x8000 partition-table.bin 0xD000 ota_data_initial.bin 0x10000 BlueRetro_hw1_nes.bin
+pio pkg exec -- esptool.py -p COM6 -b 460800 --before default_reset --after hard_reset --chip esp32 write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 bootloader.bin 0x8000 partition-table.bin 0xD000 ota_data_initial.bin 0x10000 BlueRetro_hw1_nes.bin
 ```
 
-The port `COM13` is specific to the particular board instance — check in Windows Device Manager each time you flash.
+The port `COM6` is specific to the particular board instance — check in Windows Device Manager each time you flash.
 
 **Note:** calling `python esptool.py ...` directly (not through `pio pkg exec`) may be missing dependencies for esptool, since the system Python doesn't see the environment where PlatformIO installed them — the `pio pkg exec --` command works around this by automatically using the correct environment.
 
 **Full flash erase:**
 ```
-pio pkg exec -- esptool.py -p COM13 --chip esp32 erase_flash
+pio pkg exec -- esptool.py -p COM6 --chip esp32 erase_flash
 ```
 
 **Serial Monitor Debug:**
 ```
-pio device monitor -p COM13 -b 115200
+pio device monitor -p COM6 -b 921600
+```
+
+**SecureCRT Serial Monitor settings:**
+```
+Connection:
+  Serial:
+    Port: COM6
+    Baud rate: 921600
+Terminal:
+  Emulation:
+    Modes:
+      [v] New line mode
 ```
 
 ### Initial setup after flashing (BlueRetro Web Configurator)

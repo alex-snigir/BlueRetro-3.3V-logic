@@ -1,6 +1,6 @@
 *Read this in other languages: [Русский](README.md)*
 
-# BlueRetro + Murmulator: Bluetooth Joysticks for a Perfboard Retro Computer
+# BlueRetro + Murmulator: Bluetooth Joysticks for a Perfboard Retro Computer Emulator
 
 Connect Bluetooth gamepads (Xbox One, PS/Switch, and other HID controllers) to a [Murmulator](https://murmulator.ru/howto) retro-computer emulator (RP2040) as two NES/Dendy-compatible joysticks, using a DIY [BlueRetro](https://github.com/darthcloud/BlueRetro) (ESP32) adapter as the bridge.
 
@@ -21,11 +21,12 @@ BlueRetro emulates the standard NES/Dendy shift-register protocol (CLOCK/LATCH/D
 |---|---|
 | [`doc/blueretro-murmulator-project-summary.md`](doc/blueretro-murmulator-project-summary.md) / [`_EN`](doc/blueretro-murmulator-project-summary_EN.md) | Full technical writeup: board selection, pinout, power, LED indication, firmware, oscilloscope verification |
 | [`doc/blueretro-murmulator-user-guide.md`](doc/blueretro-murmulator-user-guide.md) / [`_EN`](doc/blueretro-murmulator-user-guide_EN.md) | Day-to-day usage: pairing and unpairing Bluetooth gamepads |
+| [`doc/blueretro-xbox-one-nes-oscillograms.pdf`](doc/blueretro-xbox-one-nes-oscillograms.pdf) / [`_EN`](doc/blueretro-xbox-one-nes-oscillograms_EN.pdf) | Verification oscillograms: Xbox One gamepad as an NES joystick — LATCH, "no button pressed", and each of the 8 buttons pressed in turn (sources: [`.docx`](doc/blueretro-xbox-one-nes-oscillograms.docx) / [`_EN.docx`](doc/blueretro-xbox-one-nes-oscillograms_EN.docx); screenshots — [`doc/XBox One as NES Joystick Debugging/`](<doc/XBox One as NES Joystick Debugging/>)) |
 | [`murmulator-vga-project-summary.md`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary.md) / [`_EN`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary_EN.md) | Base Murmulator perfboard build (host platform) — separate repo |
 
 ## Status
 
-Hardware built and verified: pairing, dual-port switching, and the CLOCK/LATCH/DATA protocol confirmed with an oscilloscope against real Xbox One button presses.
+Hardware built and verified: pairing, two-port operation, and the CLOCK/LATCH/DATA protocol confirmed with an oscilloscope against real Xbox One button presses.
 
 ## Credits
 

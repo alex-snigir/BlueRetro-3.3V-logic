@@ -1,8 +1,8 @@
 *Read this in other languages: [English](README_EN.md)*
 
-# BlueRetro + Murmulator: Bluetooth-джойстики для ретро-компьютера на перфборде
+# BlueRetro + Murmulator: Bluetooth-джойстики для эмулятора ретро компьютеров на перфборде
 
-Подключение Bluetooth-геймпадов (Xbox One, PS/Switch и других HID-устройств) к ретро-компьютеру [Murmulator](https://murmulator.ru/howto) (RP2040) в качестве двух NES/Dendy-совместимых джойстиков через самодельный адаптер [BlueRetro](https://github.com/darthcloud/BlueRetro) (ESP32), выступающий мостом.
+Подключение Bluetooth-геймпадов (Xbox One, PS/Switch и других HID-устройств) к эмулятору ретро компьютеров [Murmulator](https://murmulator.ru/howto) (RP2040) в качестве двух NES/Dendy-совместимых джойстиков через самодельный адаптер [BlueRetro](https://github.com/darthcloud/BlueRetro) (ESP32), выступающий мостом.
 
 BlueRetro эмулирует на выходе стандартный протокол сдвигового регистра NES/Dendy (CLOCK/LATCH/DATA) и подключается напрямую к джойстик-портам DE-9 Мурмулятора — проводные NES-контроллеры в проекте не используются.
 
@@ -21,11 +21,12 @@ BlueRetro эмулирует на выходе стандартный прото
 |---|---|
 | [`doc/blueretro-murmulator-project-summary.md`](doc/blueretro-murmulator-project-summary.md) / [`_EN`](doc/blueretro-murmulator-project-summary_EN.md) | Полное техническое описание: выбор платы, распиновка, питание, LED-индикация, прошивка, проверка осциллографом |
 | [`doc/blueretro-murmulator-user-guide.md`](doc/blueretro-murmulator-user-guide.md) / [`_EN`](doc/blueretro-murmulator-user-guide_EN.md) | Повседневное использование: пейринг и отключение Bluetooth-геймпадов |
+| [`doc/blueretro-xbox-one-nes-oscillograms.pdf`](doc/blueretro-xbox-one-nes-oscillograms.pdf) / [`_EN`](doc/blueretro-xbox-one-nes-oscillograms_EN.pdf) | Осциллограммы проверки: геймпад Xbox One как NES-джойстик — LATCH, «ничего не нажато» и поочерёдное нажатие всех 8 кнопок (исходники: [`.docx`](doc/blueretro-xbox-one-nes-oscillograms.docx) / [`_EN.docx`](doc/blueretro-xbox-one-nes-oscillograms_EN.docx); снимки — [`doc/XBox One as NES Joystick Debugging/`](<doc/XBox One as NES Joystick Debugging/>)) |
 | [`murmulator-vga-project-summary.md`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary.md) / [`_EN`](https://github.com/alex-snigir/Murmulator-RP2040-Black-Perfboard-VGA/blob/master/doc/murmulator-vga-project-summary_EN.md) | Базовая сборка Мурмулятора на перфборде (хост-платформа) — отдельный репозиторий |
 
 ## Статус
 
-Железо собрано и проверено: пейринг, переключение между двумя портами и протокол CLOCK/LATCH/DATA подтверждены осциллографом на реальных нажатиях кнопок Xbox One.
+Железо собрано и проверено: пейринг, работа двух портов и протокол CLOCK/LATCH/DATA подтверждены осциллографом на реальных нажатиях кнопок Xbox One.
 
 ## Благодарности
 

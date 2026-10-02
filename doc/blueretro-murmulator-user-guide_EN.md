@@ -1,8 +1,8 @@
 # BlueRetro + Murmulator — User Guide (Pairing / Unpairing)
 
-**Document version:** 1.0 · **Date:** 2026-10-01
+**Document version:** 1.1 · **Date:** 2026-10-02
 
-A step-by-step guide for everyday use: how to connect a Bluetooth gamepad to BlueRetro on the Murmulator, how to disconnect it, and how to fully forget a pairing (unverified). All the technical parts of the project — pinout, electrical schematic, firmware, and build — are covered in `blueretro-murmulator-project-summary_EN.md`; this document covers only the user-facing interaction.
+A step-by-step guide for everyday use: how to connect a Bluetooth gamepad to BlueRetro on the Murmulator, how to disconnect it, how to fully forget a pairing (unverified), and which gamepads are compatible. All the technical parts of the project — pinout, electrical schematic, firmware, and build — are covered in `blueretro-murmulator-project-summary_EN.md`; this document covers only the user-facing interaction.
 
 ---
 
@@ -72,3 +72,73 @@ Needed if the gamepad will no longer be used with this adapter, or to free a slo
 | Configuration reset + clear pairing keys | 6–10 sec (LED blinks fast) | Configuration reset + unpair all devices |
 | ESP32 factory reset | > 30 sec | Full firmware and settings reset |
 | Short press in pairing mode | — | Stop pairing / disconnect all BT devices |
+
+---
+
+## 3. Gamepad compatibility
+
+Verified on firmware `v25.04 hw1 nes`.
+
+| Gamepad | Protocol | Result |
+|---|---|---|
+| Xbox One (model 1708 and newer, with the Sync button) | Classic BT | Works (confirmed) — see section 1 |
+| No-name GamePadPlus V3 (AliExpress), **X + Home** mode | BLE | Works (confirmed) |
+| No-name GamePadPlus V3, other modes (A / B / Y + Home) | BLE / Classic BT | Connects, but buttons are not transmitted (confirmed) |
+
+### 3.1. No-name GamePadPlus V3 gamepad
+
+The gamepad has four connection modes, selected by a button combination at power-on. **Only the X + Home mode** works with BlueRetro.
+
+**Connecting (first time):**
+
+1. Make sure BlueRetro is in search mode (IO17 and the free port LED are pulsing — see section 1).
+2. With the gamepad **turned off**, press and hold the **X** button and, without releasing it, press **Home** (the center button).
+3. The gamepad pairs with BlueRetro: the global LED (IO17) turns off, and the port LED changes to steady.
+
+**Reconnecting:** the gamepad remembers the last selected mode — just press **Home** (confirmed).
+
+**If the gamepad has connected but the buttons do not work** (the port LED is steady, but there is no signal on the DATA line): the gamepad is in a different mode — most often the factory A + Home mode. Turn the gamepad off and turn it on again with the **X + Home** combination.
+
+BlueRetro sees each mode as a separate device (with its own Bluetooth address), so after a mode change the gamepad pairs again and occupies a separate pairing key.
+
+**Gamepad modes and reasons for incompatibility** (from the ESP32 log, see section 4):
+
+| Combination | Protocol | Identifies itself as (VID:PID) | Result with BlueRetro |
+|---|---|---|---|
+| A + Home (factory) | BLE | `1949:0402` | HID descriptor is not parsed (`Unknown HID marker: 36`) — no data |
+| B + Home | Classic BT | Sony DualShock 4 `054C:09CC` | The PlayStation driver is enabled, the clone does not respond like a real DS4 — no data |
+| **X + Home** | BLE | `5803:BDF8` (generic HID gamepad) | **Works** |
+| Y + Home | BLE | `1603:FCF1` (HID mouse) | Mouse mode: no gamepad sticks or buttons — not applicable to NES |
+
+**Sign of a working mode in the log:** after connecting, an input report layout line appears, for example:
+
+```
+4 I 0130 0 8 0131 8 8 0132 16 8 0135 24 8 0139 32 4 0901 40 16 02C4 56 8 02C5 64 8 rtype: 2
+```
+
+If instead there is `Unknown HID marker`, or the line contains only mouse buttons and X/Y axes, the mode is not suitable.
+
+---
+
+## 4. Getting the connection log from the ESP32
+
+The BlueRetro serial port log shows how the gamepad connects and is recognized. It can be used to find out why a connected gamepad does not transmit buttons (see section 3.1).
+
+1. **Connect to the Serial Terminal.** Connect the ESP32 to the computer via USB and open the port in SecureCRT or with `pio device monitor`. The connection parameters (port, baud rate, SecureCRT settings) are given in the "Firmware → Serial Monitor Debug" section of `blueretro-murmulator-project-summary_EN.md`.
+2. **Restart the ESP32** with the RESET button (SW2), so the log starts from boot.
+3. **Connect the gamepad** — turn it on and pair it if needed (section 1 or 3.1).
+4. **Watch the log in the terminal window.** Connection, gamepad parsing, and disconnection are printed line by line. To save the log for analysis, copy the terminal output into a text file.
+
+⚠️ Unreadable characters at the beginning of the output, right after boot (while the Bluetooth radio initializes), are normal behavior, not a firmware fault.
+
+**What to look for in the log:**
+
+| Log line | Meaning |
+|---|---|
+| `LE ADV ... bdaddr: ...` | The gamepad connects via BLE |
+| `Page ...` / `Inquiry ... bdaddr: ...` | The gamepad connects via Classic BT |
+| `dev: 0 type: ... <name>` | The name reported by the gamepad |
+| `VID: 0x.... PID: 0x....` | The identifier the gamepad presents itself as |
+| `1 I 0130 0 16 0131 16 16 ...` | The input report layout has been built — buttons will be transmitted |
+| `Unknown HID marker: ..` | BlueRetro could not parse the gamepad description — buttons will not be transmitted |
+| `DISCONN from dev: 0` | The gamepad has disconnected |
